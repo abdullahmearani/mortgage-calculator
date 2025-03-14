@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title></title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  </head>
+  <body>
+    <div class="wp-mortgage-calculator-container">
+      <div class="wp-mortgage-calculator">
+        <h2>Mortgage Calculator</h2>
+        <div class="wp-mortgage-input-group">
+          <label>Property Price</label>
+          <div class="text-with-in">
+            <input type="text" id="wp-mortgage-propertyPrice" value="40000">
+            <span>AED</span>
+          </div>
+          <input type="range" id="wp-mortgage-propertyPriceSlider" min="5000" max="1000000" step="5000" value="40000">
+        </div>
+        <div class="wp-mortgage-input-group">
+          <label>Down Payment</label>
+          <div class="text-with-in">
+            <input type="text" id="wp-mortgage-downPayment" value="2500">
+            <span class="right-do">AED</span>
+            <span id="wp-mortgage-downPaymentPercent">25%</span>
+          </div>
+          <input type="range" id="wp-mortgage-downPaymentSlider" min="0" max="50" step="1" value="25">
+        </div>
+        <div class="wp-mortgage-input-group">
+          <label>Loan Period</label>
+          <div class="text-with-in">
+            <input type="text" id="wp-mortgage-loanPeriod" value="2">
+            <span>Years</span>
+          </div>
+          <input type="range" id="wp-mortgage-loanPeriodSlider" min="1" max="30" step="1" value="2">
+        </div>
+        <div class="wp-mortgage-input-group">
+          <label>Interest Rate</label>
+          <div class="text-with-in">
+            <input type="text" id="wp-mortgage-interestRate" value="4.5">
+            <span>%</span>
+          </div>
+          <input type="range" id="wp-mortgage-interestRateSlider" min="1" max="20" step="0.1" value="4.5">
+        </div>
+        <!--             <button id="wp-mortgage-calculateBtn">Calculate</button> -->
+      </div>
+      <div class="wp-mortgage-result">
+        <div class="canvas-texttt">
+          <canvas id="wp-mortgage-loanChart"></canvas>
+          <div class="align-in-chart">
+            <h3 id="wp-mortgage-monthlyPayment">4000 AED</h3>
+            <p>Monthly Payment</p>
+          </div>
+        </div>
+        <div class="wp-mortgage-buttons">
+          <a href="https://pxirealestate.com/property-category/buy-properties/" class="wp-mortgage-btn-light">Get Pre Approval</a>
+        </div>
+      </div>
+    </div>
+    <script>
+      document.querySelectorAll("input[type='range']").forEach(slider => {
+        function updateSliderBg(slider) {
+          let valPercent = (slider.value - slider.min) / (slider.max - slider.min) * 100;
+          slider.style.background = `linear-gradient(to right, #8B6926 ${valPercent}%, #AAAAAA ${valPercent}%)`;
+        }
+       
+        updateSliderBg(slider);
+       
+        slider.addEventListener("input", function() {
+          updateSliderBg(this);
+        });
+      });
+    </script>
+    <script src="script.js" type="text/javascript"></script>
+  </body>
+</html>
